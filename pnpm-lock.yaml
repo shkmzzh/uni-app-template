@@ -53,6 +53,9 @@ dependencies:
   pinia:
     specifier: 2.0.27
     version: 2.0.27(typescript@5.4.5)(vue@3.2.47)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -90,7 +93,7 @@ devDependencies:
     version: 0.5.12(typescript@5.4.5)
   '@uni-helper/uni-ui-types':
     specifier: ^0.5.11
-    version: 0.5.13(@uni-helper/uni-app-types@0.5.12)
+    version: 0.5.13(@uni-helper/uni-app-types@0.5.12)(typescript@5.4.5)
   '@vue/eslint-config-prettier':
     specifier: ^7.0.0
     version: 7.1.0(eslint@8.57.0)(prettier@2.8.8)
@@ -3405,7 +3408,7 @@ packages:
       vue3: /vue@3.4.21(typescript@5.4.5)
     dev: true
 
-  /@uni-helper/uni-ui-types@0.5.13(@uni-helper/uni-app-types@0.5.12):
+  /@uni-helper/uni-ui-types@0.5.13(@uni-helper/uni-app-types@0.5.12)(typescript@5.4.5):
     resolution: {integrity: sha512-jEOwxc9ISjtNz+noYP0eB+SKHCWqvep7z6DkiSrVbwvbNxZjQOnjga4fdXtrP4TIe41mtjcHIwKVz+sEB0B6KQ==}
     engines: {node: '>=14.18'}
     peerDependencies:
@@ -3416,7 +3419,9 @@ packages:
     dependencies:
       '@dcloudio/types': 3.4.8
       '@uni-helper/uni-app-types': 0.5.12(typescript@5.4.5)
-      vue3: /vue@3.2.47
+      vue3: /vue@3.4.21(typescript@5.4.5)
+    transitivePeerDependencies:
+      - typescript
     dev: true
 
   /@vitejs/plugin-legacy@4.1.1(terser@5.30.3)(vite@4.5.3):
@@ -7584,6 +7589,11 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
     dev: true
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
 
   /v8-to-istanbul@8.1.1:
     resolution: {integrity: sha512-FGtKtv3xIpR6BYhvgH8MI/y78oT7d8Au3ww4QIxymrCtZEh5b8gCw2siywE+puhEmuWKDtmfrvF5UlB298ut3w==}

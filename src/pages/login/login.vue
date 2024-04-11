@@ -1,13 +1,30 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/index'
+import { LoginApi } from '@/services/user'
 const useStore = useUserStore()
 
 const form = ref({
-  account: '',
-  password: '',
+  account: 'cangku',
+  pwd: '123456',
 })
-function onSubmit() {}
+function onSubmit() {
+  LoginApi(form.value).then((res) => {
+    console.log(res)
+    loginSuccess(res.data.token)
+  })
+}
+const loginSuccess = (token: string) => {
+  // 保存会员信息
+  useStore.setToken(token)
+  // 成功提示
+  uni.showToast({ icon: 'success', title: '登录成功' })
+  setTimeout(() => {
+    // 页面跳转
+    // uni.switchTab({ url: '/pages/my/my' })
+    uni.navigateBack()
+  }, 500)
+}
 </script>
 
 <template>
@@ -16,10 +33,9 @@ function onSubmit() {}
       <image src="@/static/images/seego.jpg"></image>
     </view>
     <view class="login">
-      <input v-model="form.account" class="input" type="text" placeholder="请输入用户名/手机号码" />
-      <!-- <input v-model="form.password" class="input" type="text" password placeholder="请输入密码" /> -->
-      <input class="uni-input" password type="text" placeholder="这是一个密码输入框" />
-      <button @tap="onSubmit" class="button phone">登录</button>
+      <input v-model="form.account" class="input" type="text" placeholder="请输入用户名" />
+      <input v-model="form.pwd" class="input" type="text" password placeholder="请输入密码" />
+      <button @tap="onSubmit" class="button">登录</button>
     </view>
   </view>
 </template>
@@ -35,34 +51,44 @@ page {
   height: 100%;
   padding: 20rpx 40rpx;
 }
-.form {
-  margin-top: 100rpx;
+
+.logo {
+  flex: 1;
+  text-align: center;
+  image {
+    width: 308rpx;
+    height: 385rpx;
+    margin-top: 6vh;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  padding: 40rpx 20rpx 20rpx;
+
   .input {
     width: 100%;
     height: 80rpx;
     font-size: 28rpx;
-    border-bottom: 1px solid $uni-border-color;
+    border-radius: 72rpx;
+    border: 1px solid #ddd;
     padding-left: 30rpx;
     margin-bottom: 20rpx;
   }
 
   .button {
-    margin: 60rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 80rpx;
     font-size: 28rpx;
     border-radius: 72rpx;
-    background-color: $uni-color-primary;
-    color: $uni-text-color-inverse;
-    letter-spacing: 6rpx;
-    line-height: 80rpx;
-  }
-  .newuesr {
-    color: $uni-text-color;
-    text-align: center;
-    .icon-right {
-      font-weight: 700;
-    }
+    color: #fff;
+    background: #ff7f01;
+    margin-top: 25rpx;
   }
 }
 </style>
