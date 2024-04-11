@@ -10,7 +10,6 @@ const form = ref({
 })
 function onSubmit() {
   LoginApi(form.value).then((res) => {
-    console.log(res)
     loginSuccess(res.data.token)
   })
 }
@@ -21,7 +20,7 @@ const loginSuccess = (token: string) => {
   uni.showToast({ icon: 'success', title: '登录成功' })
   setTimeout(() => {
     // 页面跳转
-    // uni.switchTab({ url: '/pages/my/my' })
+    uni.switchTab({ url: '/pages/index/index' })
     uni.navigateBack()
   }, 500)
 }
