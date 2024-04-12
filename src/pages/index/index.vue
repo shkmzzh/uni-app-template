@@ -1,9 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <view class="index">
-    <view class="btn">接货管理</view>
-    <view class="btn">整批出库</view>
+  <view class="viewport">
+    <view class="content">
+      <view class="btn">接货管理</view>
+      <view class="btn">整批出库</view>
+    </view>
   </view>
 </template>
 
@@ -19,7 +21,7 @@ page {
   display: flex;
   flex-direction: column;
 }
-.index {
+.content {
   padding: 100rpx 25rpx;
   display: flex;
   justify-content: space-between;

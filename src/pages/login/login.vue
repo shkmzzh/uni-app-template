@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/index'
-import { LoginApi } from '@/services/user'
+import { LoginApi, getUserInfoApi } from '@/services/user'
 const useStore = useUserStore()
 
 const form = ref({
@@ -16,12 +16,16 @@ function onSubmit() {
 const loginSuccess = (token: string) => {
   // 保存会员信息
   useStore.setToken(token)
+  getUserInfoApi().then((res) => {
+    console.log(res)
+    useStore.setUserInfo(res.data) 
+  })
   // 成功提示
   uni.showToast({ icon: 'success', title: '登录成功' })
+
   setTimeout(() => {
     // 页面跳转
     uni.switchTab({ url: '/pages/index/index' })
-    uni.navigateBack()
   }, 500)
 }
 </script>
